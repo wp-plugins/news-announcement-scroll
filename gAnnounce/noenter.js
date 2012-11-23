@@ -1,6 +1,6 @@
 /**
  *     News announcement scroll
- *     Copyright (C) 2011  www.gopiplus.com
+ *     Copyright (C) 2011 - 2013 www.gopiplus.com
  * 
  *     This program is free software: you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+ 
 function gAnnounceNoEnterKey(e)
 {
     var pK = e ? e.which : window.event.keyCode;

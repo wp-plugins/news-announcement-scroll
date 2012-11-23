@@ -52,14 +52,19 @@ function _dealdelete(id)
 </tbody>
 </table>
 <table cellspacing="3"><tr><td align="left">
-<h2>Note</h2>
+<br />
+<strong>Note</strong>
 <p>In front end widget area, if you see any news content out of area or invisible, it because of height and width of the widget, so you should arrange width and height of the widget in widget configuration area to good look. In default I have fixed width: 180px and height: 100px.
 </p>
-<p>1. We disabled enter key from above text area, to break the line type &lt;br&gt;. <br />2. add your Announcement record by record <br />3. 0000-00-00 is equal to no expiration.</p>
-<h2>About Plugin</h2>
-Plug-in created by <a target="_blank" href='http://www.gopiplus.com/'>www.gopiplus.com</a><br> 
-<a target="_blank" href='http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/'>Click here</a> to see live demo and tutorial. <br> 
-<br>
+<ul>
+	<li>1. We disabled enter key from above text area, to break the line type &lt;br&gt;. </li>
+	<li>2. add your Announcement record by record</li>
+	<li>3. 0000-00-00 is equal to no expiration.</li>
+</ul>
+<strong>About Plugin</strong>
+<ul>
+	<li>Check official website for more information <a href="http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/" target="_blank">Click here</a></li>
+</ul>
 </td>
 </tr></table>
 </form>

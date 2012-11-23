@@ -114,7 +114,7 @@ if (@$_POST['gNewsAnnouncementsubmit'])
       </tr>
       <tr>
         <td colspan="5"><input name='gNewsAnnouncementorder' type='text' id='gNewsAnnouncementorder'  value='<?php echo $gNewsAnnouncementorder; ?>' size="10" maxlength="1" />
-        ( 0 = Display order(it is available in manage page link), 1= Random Order) </td>
+        (0 = Display order, 1 = Random Order) </td>
       </tr>
       <tr>
         <td colspan="5">Widget Type</td>
@@ -132,13 +132,14 @@ if (@$_POST['gNewsAnnouncementsubmit'])
     <input name="text_management1" lang="text_management" class="button-primary" onClick="location.href='options-general.php?page=news-announcement-scroll/news-announcement-scroll.php'" value="Go to - Text Management" type="button" />
     <input name="setting_management1" lang="setting_management" class="button-primary" onClick="location.href='options-general.php?page=news-announcement-scroll/setting.php'" value="Go to - Gallery Setting" type="button" />
   </div>
-  <h2>Plugin configuration</h2>
-	1. Drag and Drop the widget.<br> 
-	2. Add the announcement in the posts or pages using short code.<br> 
-	3. Add directly in to the theme using php code.<br> 
-	<a target="_blank" href='http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/'>Click here</a> for configuration help and short code.<br> 
-  <h2>About Plugin</h2>
-  Plug-in created by <a target="_blank" href='http://www.gopiplus.com/'>www.gopiplus.com</a><br> 
-  <a target="_blank" href='http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/'>Click here</a> to see live demo and tutorial.<br> 
-  <br>
+  	<strong>Plugin configuration</strong>
+	<ul>
+		<li>1. Drag and Drop the widget.<br> 
+		<li>2. Add the announcement in the posts or pages using short code.</li>
+		<li>3. Add directly in to the theme using php code.</li>
+	</ul>
+	<strong>About Plugin</strong>
+	<ul>
+		<li>Check official website for more information <a href="http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/" target="_blank">Click here</a></li>
+	</ul>
 </div>

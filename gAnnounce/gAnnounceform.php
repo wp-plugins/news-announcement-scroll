@@ -14,10 +14,10 @@
       <td colspan="4"><textarea name="gNews_text" cols="115" rows="6" id="txt_news"><?php echo @$gNews_text_x; ?></textarea></td>
     </tr>
     <tr>
-      <td width="128">Display Order :</td>
-      <td width="162">Display Status :</td>
-      <td width="376">Type (This to group the announcement) :</td>
-      <td width="598">Expiration Date (YYYY-MM-DD) : </td>
+      <td width="129">Display Order :</td>
+      <td width="115">Display Status :</td>
+      <td width="272">Type (This to group the announcement) :</td>
+      <td width="765">Expiration Date (YYYY-MM-DD) : </td>
     </tr>
     <tr>
       <td><input name="gNews_order" value="<?php echo @$gNews_order_x; ?>" type="text" id="txt_order" size="10" maxlength="3" /></td>

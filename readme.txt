@@ -5,8 +5,8 @@ Tags: news, announcement, scroll news
 Author URI: http://www.gopiplus.com/
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: 5
+Tested up to: 3.5
+Stable tag: 6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -100,6 +100,9 @@ Tested UpTo 3.4
 = 5.0 =
 New demo link, www.gopiplus.com
 
+= 6.0 =
+Tested UpTo 3.5
+
 == Screenshots ==
 
 1. http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/ 	
@@ -122,3 +125,6 @@ Tested UpTo 3.4
 
 = 5.0 =
 New demo link, www.gopiplus.com
+
+= 6.0 =
+Tested UpTo 3.5

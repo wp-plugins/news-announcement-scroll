@@ -4,7 +4,7 @@
 Plugin Name: News announcement scroll
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Description: This plug-in will create a vertical scroll news or Announcement for your word press site, we can embed this in site sidebar, Multi language support.
-Version: 5
+Version: 6
 Author: Gopi.R
 Author URI: http://www.gopiplus.com/
 Donate link: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
@@ -91,7 +91,7 @@ function news_announcement_admin_options()
         if ( empty($data) ) 
         {
             echo "";
-            return;
+            //return;
         }
         $data = $data[0];
         //encode strings
@@ -153,26 +153,26 @@ if (is_admin())
 	add_action('admin_menu', 'news_announcement_add_to_menu');
 }
 
-add_filter('the_content','news_show_filter');
-
-function news_show_filter($content)
-{
-	return 	preg_replace_callback('/\[NEWS:(.*?)\]/sim','news_show_filter_callback',$content);
-}
-
-function news_show_filter_callback($matches) 
+function news_shortcode( $atts ) 
 {
 	global $wpdb;
 	
-	$scode = $matches[1];
+	//$scode = $matches[1];
 	
 	$nas =  "";
 	$Ann = "";
 	
-	list($gNewsAnnouncementtype_main) = split("[:.-]", $scode);
+	//list($gNewsAnnouncementtype_main) = split("[:.-]", $scode);
 	//[NEWS:TYPE=widget]
+	//[news-announcement type="widget"]
 	
-	list($gNewsAnnouncementtype_cap, $gNewsAnnouncementtype) = split('[=.-]', $scode);
+	//list($gNewsAnnouncementtype_cap, $gNewsAnnouncementtype) = split('[=.-]', $scode);
+	
+	if ( ! is_array( $atts ) )
+	{
+		return '';
+	}
+	$gNewsAnnouncementtype = $atts['type'];
 	
 	$sSql = "SELECT * from ". WP_G_NEWS_ANNOUNCEMENT . " where gNews_status='Yes' and (`gNews_expiration` >= NOW() or `gNews_expiration` = '0000-00-00')";
 	
@@ -264,6 +264,7 @@ function news_announcement_deactivate()
 //
 //add_action('init', 'news_add_javascript_files');
 
+add_shortcode( 'news-announcement', 'news_shortcode' );
 register_activation_hook(__FILE__, 'news_announcement_activation');
 add_action("plugins_loaded", "news_announcement_plugins_loaded");
 register_deactivation_hook( __FILE__, 'news_announcement_deactivate' );
