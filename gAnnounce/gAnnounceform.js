@@ -100,7 +100,21 @@ function ConvertBR(input)
 	alert(output)
 }
 
-function _gHelp()
+function gNews_redirect()
+{
+	window.location = "options-general.php?page=news-announcement-scroll";
+}
+
+function gNews_gHelp()
 {
 	window.open("http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/");
 }
+
+function gNews_delete(id)
+{
+	if(confirm("Do you want to delete this record?"))
+	{
+		document.frm_gNews_display.action="options-general.php?page=news-announcement-scroll&ac=del&rand=76mv1ojtlele176mv1ojtlele1&did="+id;
+		document.frm_gNews_display.submit();
+	}
+}	

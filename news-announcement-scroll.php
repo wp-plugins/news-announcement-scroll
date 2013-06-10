@@ -4,7 +4,7 @@
 Plugin Name: News announcement scroll
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Description: This plug-in will create a vertical scroll news or Announcement for your word press site, we can embed this in site sidebar, Multi language support.
-Version: 6
+Version: 7
 Author: Gopi.R
 Author URI: http://www.gopiplus.com/
 Donate link: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
@@ -14,6 +14,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_G_NEWS_ANNOUNCEMENT", $wpdb->prefix . "news_announcement");
+define("WP_gNews_UNIQUE_NAME", "gNews");
+define("WP_gNews_TITLE", "News announcement scroll");
+define('WP_gNews_LINK', 'Check official website for more information <a target="_blank" href="http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/">click here</a>');
+define('WP_gNews_FAV', 'http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/');
 
 function news_announcement()
 {
@@ -69,45 +73,23 @@ function news_announcement_activation()
 
 function news_announcement_admin_options() 
 {
-	?>
-    <div class="wrap">
-    <?php
-    @$mainurl = get_option('siteurl')."/wp-admin/options-general.php?page=news-announcement-scroll/news-announcement-scroll.php";
-    ?>
-    <h2>News announcement scroll</h2>
-    <?php
 	global $wpdb;
-    @$AID=@$_GET["AID"];
-    @$AC=@$_GET["AC"];
-    @$rand=$_GET["rand"];
-    @$submittext = "Insert Announcement";
-	if($AC <> "DEL" and trim(@$_POST['gNews_text']) <>"") { include_once("gAnnounce/gAnnounceins.php"); }
-    if($AC=="DEL" && $rand == "76mv1ojtlele176mv1ojtlele1" && $AID > 0) { include_once("gAnnounce/gAnnouncedel.php"); }
-    if($AID<>"" and $AC <> "DEL")
-    {
-        //select query
-        $data = $wpdb->get_results("select * from ".WP_G_NEWS_ANNOUNCEMENT." where gNews_id=$AID limit 1");
-        //bad feedback
-        if ( empty($data) ) 
-        {
-            echo "";
-            //return;
-        }
-        $data = $data[0];
-        //encode strings
-        if ( !empty($data) ) $gNews_id_x = htmlspecialchars(stripslashes($data->gNews_id)); 
-        if ( !empty($data) ) $gNews_text_x = htmlspecialchars(stripslashes($data->gNews_text));
-        if ( !empty($data) ) $gNews_order_x = htmlspecialchars(stripslashes($data->gNews_order));
-        if ( !empty($data) ) $gNews_status_x = htmlspecialchars(stripslashes($data->gNews_status));
-		if ( !empty($data) ) $gNews_expiration_x = htmlspecialchars(stripslashes($data->gNews_expiration));
-		if ( !empty($data) ) $gNews_type_x = htmlspecialchars(stripslashes($data->gNews_type));
-        @$submittext = "Update Announcement";
-    }
-    ?>
-    <?php include_once("gAnnounce/gAnnounceform.php"); ?>
-    <?php include_once("gAnnounce/gAnnouncemanage.php"); ?>
-</div>
-    <?php
+	$current_page = isset($_GET['ac']) ? $_GET['ac'] : '';
+	switch($current_page)
+	{
+		case 'edit':
+			include('pages/content-management-edit.php');
+			break;
+		case 'add':
+			include('pages/content-management-add.php');
+			break;
+		case 'set':
+			include('pages/content-setting.php');
+			break;
+		default:
+			include('pages/content-management-show.php');
+			break;
+	}
 }
 
 function widget_news_announcement($args) 
@@ -123,11 +105,10 @@ function widget_news_announcement($args)
 
 function news_announcement_widget_control() 
 {
-	echo '<p>News announcement scroll.<br><br> To change the setting goto News announcement scroll link under setting menu.<br>';
-	echo '<a href="options-general.php?page=news-announcement-scroll/setting.php">';
-	echo 'click here</a></p>';
+	echo 'To change the setting goto <b>News announcement scroll</b> link under Settings menu. ';
+	echo '<a href="options-general.php?page=news-announcement-scroll">click here</a></p>';
+	echo WP_gNews_LINK;
 }
-
 
 function news_announcement_plugins_loaded()
 {
@@ -144,8 +125,8 @@ function news_announcement_plugins_loaded()
 
 function news_announcement_add_to_menu() 
 {
-	add_options_page('News announcement scroll', 'News announcement scroll', 'manage_options', __FILE__, 'news_announcement_admin_options' );
-	add_options_page('News announcement scroll', '', 'manage_options', 'news-announcement-scroll/setting.php','' );
+	add_options_page('News announcement scroll', 'News announcement scroll', 'manage_options', 'news-announcement-scroll', 'news_announcement_admin_options' );
+	//add_options_page('News announcement scroll', '', 'manage_options', 'news-announcement-scroll/setting.php','' );
 }
 
 if (is_admin()) 
@@ -240,17 +221,7 @@ function news_shortcode( $atts )
 
 function news_announcement_deactivate() 
 {
-	//	delete_option('gNewsAnnouncementtitle');
-	//	delete_option('gNewsAnnouncementwidth');
-	//	delete_option('gNewsAnnouncementfont');
-	//	delete_option('gNewsAnnouncementheight');
-	//	delete_option('gNewsAnnouncementfontsize');
-	//	delete_option('gNewsAnnouncementslidedirection');
-	//	delete_option('gNewsAnnouncementfontweight');
-	//	delete_option('gNewsAnnouncementslidetimeout');
-	//	delete_option('gNewsAnnouncementfontcolor');
-	//	delete_option('gNewsAnnouncementtextalign');
-	//	delete_option('gNewsAnnouncementtextvalign');
+	// No action required.
 }
 
 
