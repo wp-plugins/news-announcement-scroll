@@ -5,8 +5,8 @@ Tags: news, announcement, scroll news
 Author URI: http://www.gopiplus.com/
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Requires at least: 3.4
-Tested up to: 3.6
-Stable tag: 7
+Tested up to: 3.8
+Stable tag: 8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -32,6 +32,7 @@ News announcement scroll wordpress plug-in create a vertical scroll news widget 
 7. If you want, you can hide the news temporarily.   
 8. Only ADMIN user can access this plug-in.
 9. Short code availabe for pages and posts.
+10. Supports localization.
 
 **Plugin configuration**
 
@@ -79,7 +80,6 @@ Option 3. Add directly in to the theme using php code.
 
 **How to add different set of scroll in the same page?** 
 
-
 [Frequently Asked Questions & Answers](http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/)
 
 == Upgrade Notice ==
@@ -108,11 +108,19 @@ Tested up to 3.6
 Added some security feature.
 New admin look.
 
+= 8.0 =
+1. Tested up to 3.8 (Beta)
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (newsscroll.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Needs to create table manually).
+
 == Screenshots ==
 
 1. http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/ 	
 
 2. http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/ 	
+
+3. http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/ 	
 
 == Changelog ==
 
@@ -139,3 +147,9 @@ Tested up to3.5
 Tested up to 3.6
 Added some security feature.
 New admin look.
+
+= 8.0 =
+1. Tested up to 3.8 (Beta)
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (newsscroll.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Needs to create table manually).

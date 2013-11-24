@@ -18,7 +18,7 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
 	
 	if ($result != '1')
 	{
-		?><div class="error fade"><p><strong>Oops, selected details doesn't exist (1).</strong></p></div><?php
+		?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist.', 'newsscroll'); ?></strong></p></div><?php
 	}
 	else
 	{
@@ -36,7 +36,7 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
 			
 			//	Set success message
 			$gNews_success_msg = TRUE;
-			$gNews_success = __('Selected record was successfully deleted.', WP_gNews_UNIQUE_NAME);
+			$gNews_success = __('Selected record was successfully deleted.', 'newsscroll');
 		}
 	}
 	
@@ -48,35 +48,36 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
 ?>
 <div class="wrap">
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
-    <h2><?php echo WP_gNews_TITLE; ?><a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=news-announcement-scroll&amp;ac=add">Add New</a></h2>
+    <h2><?php _e('News announcement scroll', 'newsscroll'); ?>
+	<a class="add-new-h2" href="<?php echo WP_G_NEWS_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'newsscroll'); ?></a></h2>
     <div class="tool-box">
 	<?php
-		$sSql = "SELECT * FROM `".WP_G_NEWS_ANNOUNCEMENT."` order by gNews_type, gNews_order";
+		$sSql = "SELECT * FROM ".WP_G_NEWS_ANNOUNCEMENT." order by gNews_type, gNews_order";
 		$myData = array();
 		$myData = $wpdb->get_results($sSql, ARRAY_A);
 		?>
-		<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/news-announcement-scroll/gAnnounce/gAnnounceform.js"></script>
-		<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/news-announcement-scroll/gAnnounce/noenter.js"></script>
+		<script language="JavaScript" src="<?php echo WP_G_NEWS_PLUGIN_URL; ?>/gAnnounce/gAnnounceform.js"></script>
+		<script language="JavaScript" src="<?php echo WP_G_NEWS_PLUGIN_URL; ?>/gAnnounce/noenter.js"></script>
 		<form name="frm_gNews_display" method="post">
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" name="gNews_group_item[]" /></th>
-			<th scope="col">News</th>
-			<th scope="col">Order</th>
-            <th scope="col">Status</th>
-			<th scope="col">Type</th>
-            <th scope="col">Expiration</th>
+			<th scope="col"><?php _e('News', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Order', 'newsscroll'); ?></th>
+            <th scope="col"><?php _e('Status', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Group', 'newsscroll'); ?></th>
+            <th scope="col"><?php _e('Expiration', 'newsscroll'); ?></th>
           </tr>
         </thead>
 		<tfoot>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" name="gNews_group_item[]" /></th>
-			<th scope="col">News</th>
-			<th scope="col">Order</th>
-            <th scope="col">Status</th>
-			<th scope="col">Type</th>
-            <th scope="col">Expiration</th>
+			<th scope="col"><?php _e('News', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Order', 'newsscroll'); ?></th>
+            <th scope="col"><?php _e('Status', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Group', 'newsscroll'); ?></th>
+            <th scope="col"><?php _e('Expiration', 'newsscroll'); ?></th>
           </tr>
         </tfoot>
 		<tbody>
@@ -95,8 +96,10 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
 					<td>
 					<?php echo esc_html(stripslashes($data['gNews_text'])); ?>
 					<div class="row-actions">
-						<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=news-announcement-scroll&amp;ac=edit&amp;did=<?php echo $data['gNews_id']; ?>">Edit</a> | </span>
-						<span class="trash"><a onClick="javascript:gNews_delete('<?php echo $data['gNews_id']; ?>')" href="javascript:void(0);">Delete</a></span> 
+					<span class="edit">
+					<a title="Edit" href="<?php echo WP_G_NEWS_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['gNews_id']; ?>"><?php _e('Edit', 'newsscroll'); ?></a> | </span>
+					<span class="trash">
+					<a onClick="javascript:gNews_delete('<?php echo $data['gNews_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'newsscroll'); ?></a></span> 
 					</div>
 					</td>
 					<td><?php echo esc_html(stripslashes($data['gNews_order'])); ?></td>
@@ -111,7 +114,7 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
 			<?php 
 			if ($displayisthere == FALSE) 
 			{ 
-				?><tr><td colspan="6" align="center">No records available.</td></tr><?php 
+				?><tr><td colspan="6" align="center"><?php _e('No records available.', 'newsscroll'); ?></td></tr><?php 
 			} 
 			?>
 		</tbody>
@@ -121,18 +124,21 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
       </form>	
 	  <div class="tablenav">
 	  <h2>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=news-announcement-scroll&amp;ac=add">Add New</a>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=news-announcement-scroll&amp;ac=set">Widget setting</a>
-	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_gNews_FAV; ?>">Help</a>
+	  <a class="button add-new-h2" href="<?php echo WP_G_NEWS_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'newsscroll'); ?></a>
+	  <a class="button add-new-h2" href="<?php echo WP_G_NEWS_ADMIN_URL; ?>&amp;ac=set"><?php _e('Widget setting', 'newsscroll'); ?></a>
+	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_G_NEWS_FAV; ?>"><?php _e('Help', 'newsscroll'); ?></a>
 	  </h2>
 	  </div>
 	  <br />
-	<h3>Plugin configuration option</h3>
+	<h3><?php _e('Plugin configuration option', 'newsscroll'); ?></h3>
 	<ol>
-		<li>Drag and drop the widget.</li>
-		<li>Add the plugin in the posts or pages using short code.</li>
-		<li>Add directly in to the theme using PHP code.</li>
+		<li><?php _e('Drag and drop the widget.', 'newsscroll'); ?></li>
+		<li><?php _e('Add the plugin in the posts or pages using short code.', 'newsscroll'); ?></li>
+		<li><?php _e('Add directly in to the theme using PHP code.', 'newsscroll'); ?></li>
 	</ol>
-	  <p class="description"><?php echo WP_gNews_LINK; ?></p>
+	  <p class="description">
+		<?php _e('Check official website for more information', 'newsscroll'); ?>
+		<a target="_blank" href="<?php echo WP_G_NEWS_FAV; ?>"><?php _e('click here', 'newsscroll'); ?></a>
+	  </p>
 	</div>
 </div>
