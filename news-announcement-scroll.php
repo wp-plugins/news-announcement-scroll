@@ -3,13 +3,15 @@
 Plugin Name: News announcement scroll
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Description: This plug-in will create a vertical scroll news or Announcement for your word press site, we can embed this in site sidebar, Multi language support.
-Version: 8
-Author: Gopi.R
-Author URI: http://www.gopiplus.com/
+Version: 8.1
+Author: Gopi Ramasamy
+Author URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Donate link: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+
+if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
 
 global $wpdb, $wp_version;
 define("WP_G_NEWS_ANNOUNCEMENT", $wpdb->prefix . "news_announcement");
@@ -56,7 +58,7 @@ function news_announcement_activation()
 	
 	$IsSql = "INSERT INTO `". WP_G_NEWS_ANNOUNCEMENT . "` (`gNews_text`, `gNews_order`, `gNews_status` , `gNews_type` , `gNews_date` , `gNews_expiration` )"; 
 	
-	$sSql = $IsSql . " VALUES ('This plug-in will create a vertical scrolling announcement news', '1', 'YES', 'WIDGET', '0000-00-00', '0000-00-00');";
+	$sSql = $IsSql . " VALUES ('This plug-in will create a vertical scrolling announcement news <br><br> This plug-in will create a vertical scrolling announcement news', '1', 'YES', 'WIDGET', '0000-00-00', '0000-00-00');";
 	$wpdb->query($sSql);
 	$sSql = $IsSql . " VALUES ('Deze plug-in zal leiden tot een verticaal scrollen aankondiging nieuws', '2', 'YES', 'WIDGET', '0000-00-00', '0000-00-00');";
 	$wpdb->query($sSql);

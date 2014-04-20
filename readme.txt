@@ -2,11 +2,11 @@
 Contributors: www.gopiplus.com, gopiplus
 Donate link: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Tags: news, announcement, scroll news
-Author URI: http://www.gopiplus.com/
+Author URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Requires at least: 3.4
-Tested up to: 3.8
-Stable tag: 8
+Tested up to: 3.9
+Stable tag: 8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -114,6 +114,9 @@ New admin look.
 Plugin *.po file (newsscroll.po) available in the languages folder. Translators Welcome.
 3. Supports network multisite website (Needs to create table manually).
 
+= 8.1 =
+1. Tested up to 3.9
+
 == Screenshots ==
 
 1. http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/ 	
@@ -153,3 +156,6 @@ New admin look.
 2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
 Plugin *.po file (newsscroll.po) available in the languages folder. Translators Welcome.
 3. Supports network multisite website (Needs to create table manually).
+
+= 8.1 =
+1. Tested up to 3.9
