@@ -3,7 +3,7 @@
 Plugin Name: News announcement scroll
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Description: This plug-in will create a vertical scroll news or Announcement for your word press site, we can embed this in site sidebar, Multi language support.
-Version: 8.1
+Version: 8.2
 Author: Gopi Ramasamy
 Author URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Donate link: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
@@ -13,7 +13,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
 
-global $wpdb, $wp_version;
+global $wpdb, $wp_version, $gNews_db_version;
+$gNews_db_version = "8.2";
 define("WP_G_NEWS_ANNOUNCEMENT", $wpdb->prefix . "news_announcement");
 define('WP_G_NEWS_FAV', 'http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/');
 
@@ -36,40 +37,57 @@ function news_announcement()
 
 function news_announcement_activation()
 {
-	global $wpdb;
+	global $wpdb, $gNews_db_version;;
 	
-	//set the table
-	if($wpdb->get_var("show tables like '". WP_G_NEWS_ANNOUNCEMENT . "'") != WP_G_NEWS_ANNOUNCEMENT) 
+	$gNews_pluginversion = "";
+	$gNews_tableexists = "YES";
+	$gNews_pluginversion = get_option("gNewspluginversion");
+	
+	if($wpdb->get_var("show tables like '". WP_G_NEWS_ANNOUNCEMENT . "'") != WP_G_NEWS_ANNOUNCEMENT)
 	{
-		$wpdb->query("
-			CREATE TABLE IF NOT EXISTS `". WP_G_NEWS_ANNOUNCEMENT . "` (
-			  `gNews_id` int(11) NOT NULL auto_increment,
-			  `gNews_text`  TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL ,
-			  `gNews_order` int(11) NOT NULL default '0',
-			  `gNews_status` VARCHAR(3) NOT NULL default 'No',
-			  `gNews_date` datetime NOT NULL default '0000-00-00 00:00:00',
-			  `gNews_expiration` DATE NOT NULL default '0000-00-00',
-			  PRIMARY KEY  (`gNews_id`) )
-			");
+		$gNews_tableexists = "NO";
 	}
 	
-	$sSql = "ALTER TABLE ". WP_G_NEWS_ANNOUNCEMENT . " ADD `gNews_type` VARCHAR(100) NOT NULL"; 
-	$wpdb->query($sSql);
-	
-	$IsSql = "INSERT INTO `". WP_G_NEWS_ANNOUNCEMENT . "` (`gNews_text`, `gNews_order`, `gNews_status` , `gNews_type` , `gNews_date` , `gNews_expiration` )"; 
-	
-	$sSql = $IsSql . " VALUES ('This plug-in will create a vertical scrolling announcement news <br><br> This plug-in will create a vertical scrolling announcement news', '1', 'YES', 'WIDGET', '0000-00-00', '0000-00-00');";
-	$wpdb->query($sSql);
-	$sSql = $IsSql . " VALUES ('Deze plug-in zal leiden tot een verticaal scrollen aankondiging nieuws', '2', 'YES', 'WIDGET', '0000-00-00', '0000-00-00');";
-	$wpdb->query($sSql);
-	$sSql = $IsSql . " VALUES ('Dieses Plug-in wird ein vertikales Scrollen Ankündigung news', '3', 'YES', 'SAMPLE', '0000-00-00', '0000-00-00');";
-	$wpdb->query($sSql);
-	
+	if(($gNews_tableexists == "NO") || ($gNews_pluginversion != $gNews_db_version)) 
+	{
+		$sSql = "CREATE TABLE ". WP_G_NEWS_ANNOUNCEMENT . " (
+			 gNews_id mediumint(9) NOT NULL AUTO_INCREMENT,
+			 gNews_text text NOT NULL,
+			 gNews_order int(11) NOT NULL default '0',
+			 gNews_status char(3) NOT NULL default 'YES',
+			 gNews_date DATE DEFAULT '0000-00-00' NOT NULL,	
+			 gNews_expiration DATE DEFAULT '0000-00-00' NOT NULL, 
+			 gNews_type VARCHAR(100) DEFAULT 'GROUP1' NOT NULL,
+			 UNIQUE KEY gNews_id (gNews_id)
+		  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+  		dbDelta( $sSql );
+		
+		//echo $sSql;
+		
+		if($gNews_pluginversion == "")
+		{
+			add_option('gNews_pluginversion', "8.3");
+		}
+		else
+		{
+			update_option( "gNews_pluginversion", $gNews_db_version );
+		}
+		
+		if($gNews_tableexists == "NO")
+		{
+			$welcome_text = "This plug-in will create a vertical scrolling announcement news <br><br> This plug-in will create a vertical scrolling announcement news";	
+			$welcome_text1 = "Dieses Plug-in wird ein vertikales Scrollen Ankündigung news";
+			$rows_affected = $wpdb->insert( WP_G_NEWS_ANNOUNCEMENT , array( 'gNews_text' => $welcome_text, 'gNews_type' => 'WIDGET' ) );
+			$rows_affected = $wpdb->insert( WP_G_NEWS_ANNOUNCEMENT , array( 'gNews_text' => $welcome_text1, 'gNews_type' => 'SAMPLE' ) );
+		}
+	}
+	//die();
 	add_option('gNewsAnnouncementtitle', "Announcement");
 	add_option('gNewsAnnouncementfont', 'verdana,arial,sans-serif');
 	add_option('gNewsAnnouncementfontsize', '11px');
 	add_option('gNewsAnnouncementfontweight', 'normal');
-	add_option('gNewsAnnouncementfontcolor', '#000000');
+	add_option('gNewsAnnouncementfontcolor', '#FF0000');
 	add_option('gNewsAnnouncementwidth', '180');
 	add_option('gNewsAnnouncementheight', '100');
 	add_option('gNewsAnnouncementslidedirection', '0');
@@ -167,7 +185,9 @@ function news_shortcode( $atts )
 	}
 	$gNewsAnnouncementtype = $atts['type'];
 	
-	$sSql = "SELECT * from ". WP_G_NEWS_ANNOUNCEMENT . " where gNews_status='Yes' and (`gNews_expiration` >= NOW() or `gNews_expiration` = '0000-00-00')";
+	$sSql = "SELECT * from ". WP_G_NEWS_ANNOUNCEMENT . " where gNews_status='YES'";
+	$sSql = $sSql . " and (`gNews_date` <= NOW() or `gNews_date` = '0000-00-00')";
+	$sSql = $sSql . " and (`gNews_expiration` >= NOW() or `gNews_expiration` = '0000-00-00')";
 	
 	if($gNewsAnnouncementtype <> "")
 	{ 
@@ -221,7 +241,7 @@ function news_shortcode( $atts )
 		}
 		$Ann=substr($Ann,0,(strlen($Ann)-1));
 	
-		$nas = $nas .'<div>';
+		$nas = $nas .'<div style="padding-bottom:5px;padding-top:5px;">';
 		$nas = $nas .'<script language="JavaScript" type="text/javascript">';
 		$nas = $nas .'v_content=['.$Ann.']';
 		$nas = $nas .'</script>';

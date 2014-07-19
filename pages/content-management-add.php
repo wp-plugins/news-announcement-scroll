@@ -38,7 +38,7 @@ if (isset($_POST['gNews_form_submit']) && $_POST['gNews_form_submit'] == 'yes')
 	$form['gNews_expiration'] = isset($_POST['gNews_expiration']) ? $_POST['gNews_expiration'] : '';
 	$form['gNews_status'] = isset($_POST['gNews_status']) ? $_POST['gNews_status'] : '';
 	$form['gNews_type'] = isset($_POST['gNews_type']) ? $_POST['gNews_type'] : '';
-	$form['gNews_date'] = 'now()';
+	$form['gNews_date'] = isset($_POST['gNews_type']) ? $_POST['gNews_date'] : '';
 
 	//	No errors found, we can add this Group to the table
 	if ($gNews_error_found == FALSE)
@@ -135,9 +135,13 @@ if ($gNews_error_found == FALSE && strlen($gNews_success) > 0)
 		</select>
       <p><?php _e('This is to group the news. Select your news group.', 'newsscroll'); ?></p>        
 	  
+	  <label for="tag-display-order"><?php _e('Publish', 'newsscroll'); ?></label>
+      <input name="gNews_date" type="text" id="gNews_date" value="2014-07-01" maxlength="10" />
+      <p><?php _e('Please enter the news publish date in this format YYYY-MM-DD.', 'newsscroll'); ?></p>
+	  
 	  <label for="tag-display-order"><?php _e('Expiration date', 'newsscroll'); ?></label>
-      <input name="gNews_expiration" type="text" id="gNews_expiration" value="" maxlength="10" />
-      <p><?php _e('Please enter the expiration date in this format YYYY-MM-DD <br /> 0000-00-00 : Is equal to no expire.', 'newsscroll'); ?></p>
+      <input name="gNews_expiration" type="text" id="gNews_expiration" value="9999-12-30" maxlength="10" />
+      <p><?php _e('Please enter the expiration date in this format YYYY-MM-DD <br /> 9999-12-30 : Is equal to no expire.', 'newsscroll'); ?></p>
 	  
       <input name="gNews_id" id="gNews_id" type="hidden" value="">
       <input type="hidden" name="gNews_form_submit" value="yes"/>

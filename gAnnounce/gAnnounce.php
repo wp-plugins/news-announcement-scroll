@@ -23,7 +23,9 @@ global $wpdb;
 $Ann = "";
 
 $gNewsAnnouncementtype = get_option('gNewsAnnouncementtype');
-$sSql = "SELECT * from ". WP_G_NEWS_ANNOUNCEMENT . " where gNews_status='Yes' and (`gNews_expiration` >= NOW() or `gNews_expiration` = '0000-00-00')";
+$sSql = "SELECT * from ". WP_G_NEWS_ANNOUNCEMENT . " where gNews_status='Yes'";
+$sSql = $sSql . " and (`gNews_date` <= NOW() or `gNews_date` = '0000-00-00')";
+$sSql = $sSql . " and (`gNews_expiration` >= NOW() or `gNews_expiration` = '0000-00-00')";
 
 if($gNewsAnnouncementtype <> "")
 {

@@ -66,7 +66,7 @@ if (isset($_POST['gNews_form_submit']) && $_POST['gNews_form_submit'] == 'yes')
 	$form['gNews_expiration'] = isset($_POST['gNews_expiration']) ? $_POST['gNews_expiration'] : '';
 	$form['gNews_status'] = isset($_POST['gNews_status']) ? $_POST['gNews_status'] : '';
 	$form['gNews_type'] = isset($_POST['gNews_type']) ? $_POST['gNews_type'] : '';
-	$form['gNews_date'] = 'now()';
+	$form['gNews_date'] = isset($_POST['gNews_type']) ? $_POST['gNews_date'] : '';
 
 	//	No errors found, we can add this Group to the table
 	if ($gNews_error_found == FALSE)
@@ -135,6 +135,7 @@ if ($gNews_error_found == FALSE && strlen($gNews_success) > 0)
 		$sSql = "SELECT distinct(gNews_type) as gNews_type FROM `".WP_G_NEWS_ANNOUNCEMENT."` order by gNews_type";
 		$myDistinctData = array();
 		$arrDistinctDatas = array();
+		$selected = "";
 		$myDistinctData = $wpdb->get_results($sSql, ARRAY_A);
 		$i = 0;
 		foreach ($myDistinctData as $DistinctData)
@@ -162,10 +163,14 @@ if ($gNews_error_found == FALSE && strlen($gNews_success) > 0)
 		}
 		?>
 		</select>
-      <p><?php _e('This is to group the news. Select your news group.', 'newsscroll'); ?></p>        
+      <p><?php _e('This is to group the news. Select your news group.', 'newsscroll'); ?></p> 
+	  
+	  <label for="tag-display-order"><?php _e('Publish', 'newsscroll'); ?></label>
+      <input name="gNews_date" type="text" id="gNews_date" value="<?php echo substr($form['gNews_date'],0,10); ?>" maxlength="10" />
+      <p><?php _e('Please enter the news publish date in this format YYYY-MM-DD.', 'newsscroll'); ?></p>       
 	  
 	  <label for="tag-display-order"><?php _e('Expiration date', 'newsscroll'); ?></label>
-      <input name="gNews_expiration" type="text" id="gNews_expiration" value="<?php echo $form['gNews_expiration']; ?>" maxlength="10" />
+      <input name="gNews_expiration" type="text" id="gNews_expiration" value="<?php echo substr($form['gNews_expiration'],0,10); ?>" maxlength="10" />
       <p><?php _e('Please enter the expiration date in this format YYYY-MM-DD', 'newsscroll'); ?></p>
 		
       <input name="gNews_id" id="gNews_id" type="hidden" value="">
@@ -173,7 +178,7 @@ if ($gNews_error_found == FALSE && strlen($gNews_success) > 0)
       <p class="submit">
         <input name="publish" lang="publish" class="button-primary" value="<?php _e('Update Details', 'newsscroll'); ?>" type="submit" />
         <input name="publish" lang="publish" class="button-primary" onclick="gNews_redirect()" value="<?php _e('Cancel', 'newsscroll'); ?>" type="button" />
-        <input name="Help" lang="publish" class="button-primary" onclick="gNews_help()" value="<?php _e('Help', 'newsscroll'); ?>" type="button" />
+        <input name="Help" lang="publish" class="button-primary" onclick="gNews_gHelp()" value="<?php _e('Help', 'newsscroll'); ?>" type="button" />
       </p>
 	  <?php wp_nonce_field('gNews_form_edit'); ?>
     </form>

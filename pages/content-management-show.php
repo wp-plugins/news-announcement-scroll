@@ -64,11 +64,12 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
         <thead>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" name="gNews_group_item[]" /></th>
-			<th scope="col"><?php _e('News', 'newsscroll'); ?></th>
+			<th scope="col" style="width:50%"><?php _e('News', 'newsscroll'); ?></th>
 			<th scope="col"><?php _e('Order', 'newsscroll'); ?></th>
-            <th scope="col"><?php _e('Status', 'newsscroll'); ?></th>
+            <th scope="col"><?php _e('Display', 'newsscroll'); ?></th>
 			<th scope="col"><?php _e('Group', 'newsscroll'); ?></th>
-            <th scope="col"><?php _e('Expiration', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Publish', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Expiration', 'newsscroll'); ?></th>
           </tr>
         </thead>
 		<tfoot>
@@ -78,45 +79,43 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
 			<th scope="col"><?php _e('Order', 'newsscroll'); ?></th>
             <th scope="col"><?php _e('Status', 'newsscroll'); ?></th>
 			<th scope="col"><?php _e('Group', 'newsscroll'); ?></th>
-            <th scope="col"><?php _e('Expiration', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Publish', 'newsscroll'); ?></th>
+			<th scope="col"><?php _e('Expiration', 'newsscroll'); ?></th>
           </tr>
         </tfoot>
 		<tbody>
 			<?php 
 			$i = 0;
-			$displayisthere = FALSE;
-			foreach ($myData as $data)
+			if(count($myData) > 0 )
 			{
-				if(strtoupper($data['gNews_status']) == 'YES') 
+				foreach ($myData as $data)
 				{
-					$displayisthere = TRUE; 
+					?>
+					<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
+						<td align="left"><input type="checkbox" value="<?php echo $data['gNews_id']; ?>" name="gNews_group_item[]"></th>
+						<td>
+						<?php echo esc_html(stripslashes($data['gNews_text'])); ?>
+						<div class="row-actions">
+						<span class="edit">
+						<a title="Edit" href="<?php echo WP_G_NEWS_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['gNews_id']; ?>"><?php _e('Edit', 'newsscroll'); ?></a> | </span>
+						<span class="trash">
+						<a onClick="javascript:gNews_delete('<?php echo $data['gNews_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'newsscroll'); ?></a></span> 
+						</div>
+						</td>
+						<td><?php echo esc_html(stripslashes($data['gNews_order'])); ?></td>
+						<td><?php echo esc_html(stripslashes($data['gNews_status'])); ?></td>
+						<td><?php echo esc_html(stripslashes($data['gNews_type'])); ?></td>
+						<td><?php echo substr($data['gNews_date'],0,10); ?></td>
+						<td><?php echo substr($data['gNews_expiration'],0,10); ?></td>
+					</tr>
+					<?php 
+					$i = $i+1; 
 				}
-				?>
-				<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
-					<td align="left"><input type="checkbox" value="<?php echo $data['gNews_id']; ?>" name="gNews_group_item[]"></th>
-					<td>
-					<?php echo esc_html(stripslashes($data['gNews_text'])); ?>
-					<div class="row-actions">
-					<span class="edit">
-					<a title="Edit" href="<?php echo WP_G_NEWS_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['gNews_id']; ?>"><?php _e('Edit', 'newsscroll'); ?></a> | </span>
-					<span class="trash">
-					<a onClick="javascript:gNews_delete('<?php echo $data['gNews_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'newsscroll'); ?></a></span> 
-					</div>
-					</td>
-					<td><?php echo esc_html(stripslashes($data['gNews_order'])); ?></td>
-					<td><?php echo esc_html(stripslashes($data['gNews_status'])); ?></td>
-					<td><?php echo esc_html(stripslashes($data['gNews_type'])); ?></td>
-					<td><?php echo esc_html(stripslashes($data['gNews_expiration'])); ?></td>
-				</tr>
-				<?php 
-				$i = $i+1; 
-				} 
-			?>
-			<?php 
-			if ($displayisthere == FALSE) 
-			{ 
-				?><tr><td colspan="6" align="center"><?php _e('No records available.', 'newsscroll'); ?></td></tr><?php 
-			} 
+			}
+			else
+			{
+				?><tr><td colspan="7" align="center"><?php _e('No records available.', 'newsscroll'); ?></td></tr><?php
+			}
 			?>
 		</tbody>
         </table>
