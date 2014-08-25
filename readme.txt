@@ -5,12 +5,12 @@ Tags: news, announcement, scroll news
 Author URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Requires at least: 3.4
-Tested up to: 3.9.1
-Stable tag: 8.2
+Tested up to: 4.0
+Stable tag: 8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
-This plug-in will create a vertical scroll news or Announcement for your word press site, we can embed this in site sidebar.
+This plugin will create a vertical scroll news or Announcement for your word press site, we can embed this in site sidebar.
 
 == Description ==
 
@@ -44,12 +44,8 @@ News announcement scroll wordpress plug-in create a vertical scroll news widget 
 
 == Installation ==
 
-**Installation Instruction**
-
 [Installation Instruction](http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/)		
   
-**To configure**
-
 [Plugin configuration](http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/)	
 
 == Frequently Asked Questions == 
@@ -107,6 +103,9 @@ Plugin *.po file (newsscroll.po) available in the languages folder. Translators 
 = 8.2 =
 1. New option to add publish date for news announcement.
 
+= 8.3 =
+1. Tested up to 4.0
+
 == Screenshots ==
 
 1. http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/ 	
@@ -152,3 +151,6 @@ Plugin *.po file (newsscroll.po) available in the languages folder. Translators 
 
 = 8.2 =
 1. New option to add publish date for news announcement.
+
+= 8.3 =
+1. Tested up to 4.0
