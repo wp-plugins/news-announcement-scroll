@@ -5,8 +5,8 @@ Tags: news, announcement, scroll news
 Author URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Requires at least: 3.4
-Tested up to: 4.1
-Stable tag: 8.4
+Tested up to: 4.2.2
+Stable tag: 8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -109,6 +109,9 @@ Plugin *.po file (newsscroll.po) available in the languages folder. Translators 
 = 8.4 =
 1. Tested up to 4.1
 
+= 8.5 =
+1. Tested up to 4.2.2
+
 == Screenshots ==
 
 1. http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/ 	
@@ -160,3 +163,6 @@ Plugin *.po file (newsscroll.po) available in the languages folder. Translators 
 
 = 8.4 =
 1. Tested up to 4.1
+
+= 8.5 =
+1. Tested up to 4.2.2
