@@ -3,7 +3,7 @@
 Plugin Name: News announcement scroll
 Plugin URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Description: This plugin will create a vertical scroll news or Announcement for your word press site, we can embed this in site sidebar, Multi language support.
-Version: 8.5
+Version: 8.6
 Author: Gopi Ramasamy
 Author URI: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/
 Donate link: http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/

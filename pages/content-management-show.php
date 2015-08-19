@@ -4,6 +4,7 @@
 if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
 {
 	$did = isset($_GET['did']) ? $_GET['did'] : '0';
+	if(!is_numeric($did)) { die('<p>Are you sure you want to do this?</p>'); }
 	
 	$gNews_success = '';
 	$gNews_success_msg = FALSE;
@@ -63,7 +64,7 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
-            <th class="check-column" scope="row"><input type="checkbox" name="gNews_group_item[]" /></th>
+            <th class="check-column" scope="row" style="padding: 8px 2px;"><input type="checkbox" name="gNews_group_item[]" /></th>
 			<th scope="col" style="width:50%"><?php _e('News', 'newsscroll'); ?></th>
 			<th scope="col"><?php _e('Order', 'newsscroll'); ?></th>
             <th scope="col"><?php _e('Display', 'newsscroll'); ?></th>
@@ -74,7 +75,7 @@ if (isset($_POST['frm_gNews_display']) && $_POST['frm_gNews_display'] == 'yes')
         </thead>
 		<tfoot>
           <tr>
-            <th class="check-column" scope="row"><input type="checkbox" name="gNews_group_item[]" /></th>
+            <th class="check-column" scope="row" style="padding: 8px 2px;"><input type="checkbox" name="gNews_group_item[]" /></th>
 			<th scope="col"><?php _e('News', 'newsscroll'); ?></th>
 			<th scope="col"><?php _e('Order', 'newsscroll'); ?></th>
             <th scope="col"><?php _e('Status', 'newsscroll'); ?></th>
